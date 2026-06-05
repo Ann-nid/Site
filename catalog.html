@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Каталог</title>
+</head>
+<body>
+    <ul class="menu">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="catalog.html">Каталог</a></li>
+    </ul>
+    <hr>
+    <h2>Каталог</h2>
+
+    <div class="filter">
+        <button data-filter="all">Все</button>
+        <button data-filter="boho">Бохо</button>
+        <button data-filter="minimalism">Минимализм</button>
+        <button data-filter="scandi">Скандинавский</button>
+        <button data-filter="eco">Эко</button>
+    </div>
+
+    <div class="products">
+
+        <div class="product" data-name="Бохо" data-price="3500000" data-category="boho">
+            <img src="boho.jpg" alt="Бохо" width="200" height="180">
+            <h3>Бохо</h3>
+            <p>Цена: 3500000 ₽</p>
+            <button class="add">В корзину</button>
+        </div>
+
+        <div class="product" data-name="Минимализм" data-price="4200000" data-category="minimalism">
+            <img src="minimalism.jpg" alt="Минимализм" width="200" height="180">
+            <h3>Минимализм</h3>
+            <p>Цена: 4200000 ₽</p>
+            <button class="add">В корзину</button>
+        </div>
+
+        <div class="product" data-name="Скандинавский" data-price="3800000" data-category="scandi">
+            <img src="scandi.jpg" alt="Скандинавский" width="200" height="180">
+            <h3>Скандинавский</h3>
+            <p>Цена: 3800000 ₽</p>
+            <button class="add">В корзину</button>
+        </div>
+
+        <div class="product" data-name="Эко" data-price="4000000" data-category="eco">
+            <img src="eco.jpg" alt="Эко" width="200" height="180">
+            <h3>Эко</h3>
+            <p>Цена: 4000000 ₽</p>
+            <button class="add">В корзину</button>
+        </div>
+    </div>
+
+    <div class="cart">
+        <h3>Корзина</h3>
+        <div class="items"></div>
+        <div class="total">Итого: 0 ₽</div>
+        <button id="checkout">Оплатить</button>
+    </div>
+
+    <hr>
+    <p>&copy; Все права защищены</p>
+
+    <script src="script.js"></script>
+</body>
+</html>
