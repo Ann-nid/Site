@@ -1,12 +1,23 @@
+document.addEventListener('DOMContentLoaded', function() {
+
 let cart = [];
 
-let addButtons = document.querySelectorAll('.add');
-let filterButtons = document.querySelectorAll('.filter button');
-let checkoutBtn = document.getElementById('checkout');
-let itemsDiv = document.querySelector('.items');
-let totalDiv = document.querySelector('.total');
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+const savedCart = localStorage.getItem("cart");
+if (savedCart) {
+    cart = JSON.parse(savedCart);
+    showCart();  
+}
 
 function showCart() {
+    let itemsDiv = document.querySelector('.items');
+    let totalDiv = document.querySelector('.total');
+    
+    if (!itemsDiv || !totalDiv) return;
+    
     itemsDiv.innerHTML = '';
     let total = 0;
     
@@ -20,10 +31,15 @@ function showCart() {
     totalDiv.innerHTML = 'Итого: ' + total + ' ₽';
 }
 
-function removeItem(index) {
+window.removeItem = function(index) {
     cart.splice(index, 1);
     showCart();
+    saveCart(); 
 }
+
+let addButtons = document.querySelectorAll('.add');
+let filterButtons = document.querySelectorAll('.filter button');
+let checkoutBtn = document.getElementById('checkout');
 
 for (let i = 0; i < addButtons.length; i++) {
     addButtons[i].addEventListener('click', function() {
@@ -33,6 +49,7 @@ for (let i = 0; i < addButtons.length; i++) {
         
         cart.push({ name: name, price: price });
         showCart();
+        saveCart();
     });
 }
 
@@ -53,12 +70,17 @@ for (let i = 0; i < filterButtons.length; i++) {
     });
 }
 
-checkoutBtn.addEventListener('click', function() {
-    if (cart.length === 0) {
-        alert('Корзина пуста');
-    } else {
-        alert('Покупка прошла успешно!');
-        cart = [];
-        showCart();
-    }
+if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', function() {
+        if (cart.length === 0) {
+            alert('Корзина пуста');
+        } else {
+            alert('Покупка прошла успешно!');
+            cart = [];
+            showCart();
+            saveCart();
+        }
+    });
+}
+
 });
